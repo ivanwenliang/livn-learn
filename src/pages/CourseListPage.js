@@ -34,8 +34,10 @@ const CourseListPage = ({
       <ul>
         {courses.map(course => (
           <li key={course.id}>
-            <div className="title">{course.name}</div>
-            <div className="price">${course.price.toFixed(2)}</div>
+            <a href={`/courses/${course.id}`}>
+              <div className="title">{course.name}</div>
+              <div className="price">${course.price.toFixed(2)}</div>
+            </a>
           </li>
         ))}
       </ul>

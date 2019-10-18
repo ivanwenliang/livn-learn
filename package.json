@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reach/router": "^1.2.1",
     "immer": "^4.0.1",
     "json-server": "^0.15.1",
     "react": "^16.10.2",
