@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
+import { addCourse } from "../actions";
 
-const CourseListPage = ({ courses }) => {
+const CourseListPage = ({ courses, dispatch }) => {
+  const [courseName, setCourseName] = useState("");
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(addCourse(courseName));
+  };
+
   return courses.length === 0 ? (
     <div>
       <h1>Create Your First Course</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
           Course Name:
-          <input></input>
+          <input
+            value={courseName}
+            onChange={e => setCourseName(e.target.value)}
+          />
+          <button type="submit">Create Course</button>
         </label>
       </form>
     </div>

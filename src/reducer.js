@@ -10,6 +10,8 @@ const reducer = produce((draft, action) => {
     case ADD_COURSE:
       draft.courses.push(action.payload);
       return;
+    default:
+      return;
   }
 }, initialState);
 
