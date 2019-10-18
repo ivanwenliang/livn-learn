@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "@reach/router";
 import Modal from "react-modal";
 import NewCourse from "../components/NewCourse";
 import { openNewCourseModal, closeNewCourseModal } from "../actions";
@@ -34,10 +35,10 @@ const CourseListPage = ({
       <ul>
         {courses.map(course => (
           <li key={course.id}>
-            <a href={`/courses/${course.id}`}>
+            <Link to={`/courses/${course.id}`}>
               <div className="title">{course.name}</div>
               <div className="price">${course.price.toFixed(2)}</div>
-            </a>
+            </Link>
           </li>
         ))}
       </ul>
