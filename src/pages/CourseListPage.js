@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addCourse } from "../actions";
+import "./CourseListPage.css";
 
 const CourseListPage = ({ courses, dispatch }) => {
   const [courseName, setCourseName] = useState("");
@@ -11,7 +12,7 @@ const CourseListPage = ({ courses, dispatch }) => {
   };
 
   return courses.length === 0 ? (
-    <div>
+    <div className="CreateCourse">
       <h1>Create Your First Course</h1>
       <form onSubmit={handleSubmit}>
         <label>
