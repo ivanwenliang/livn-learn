@@ -3,13 +3,20 @@ import { connect } from "react-redux";
 import { addCourse } from "../actions";
 import "./CourseListPage.css";
 
-const CourseListPage = ({ courses, dispatch }) => {
+const CourseListPage = ({ isLoading, error, courses, dispatch }) => {
   const [courseName, setCourseName] = useState("");
 
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(addCourse(courseName));
   };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>{error.message}</div>;
+  }
 
   return courses.length === 0 ? (
     <div className="CreateCourse">
@@ -37,6 +44,8 @@ const CourseListPage = ({ courses, dispatch }) => {
 };
 
 const mapState = state => ({
+  isLoading: state.isLoading,
+  error: state.error,
   courses: state.courses
 });
 export default connect(mapState)(CourseListPage);

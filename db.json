@@ -1,3 +1,16 @@
 {
-  "courses": []
+  "courses": [
+    {
+      "name": "asdf",
+      "id": 1
+    },
+    {
+      "name": "asdf",
+      "id": 2
+    },
+    {
+      "name": "asdf",
+      "id": 3
+    }
+  ]
 }
