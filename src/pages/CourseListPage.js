@@ -12,10 +12,11 @@ const CourseListPage = ({
   dispatch
 }) => {
   const [courseName, setCourseName] = useState("");
+  const [coursePrice, setCoursePrice] = useState("");
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addCourse(courseName));
+    dispatch(addCourse(courseName, coursePrice));
   };
 
   if (coursesLoading) {
@@ -37,13 +38,21 @@ const CourseListPage = ({
             onChange={e => setCourseName(e.target.value)}
             disabled={saveInProgress}
           />
-          {saveError && (
-            <div className="error-message">Error: {saveError.message}</div>
-          )}
-          <button type="submit" disabled={saveInProgress}>
-            Create Course
-          </button>
         </label>
+        <label>
+          Course Price:
+          <input
+            value={coursePrice}
+            onChange={e => setCoursePrice(e.target.value)}
+            disabled={saveInProgress}
+          />
+        </label>
+        {saveError && (
+          <div className="error-message">Error: {saveError.message}</div>
+        )}
+        <button type="submit" disabled={saveInProgress}>
+          Create Course
+        </button>
       </form>
     </div>
   ) : (
@@ -53,7 +62,7 @@ const CourseListPage = ({
         {courses.map(course => (
           <li key={course.id}>
             <div className="title">{course.name}</div>
-            <div className="price">$$$</div>
+            <div className="price">${course.price.toFixed(2)}</div>
           </li>
         ))}
       </ul>
