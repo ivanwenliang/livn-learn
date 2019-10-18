@@ -8,6 +8,9 @@ export const LOAD_COURSES_BEGIN = "LOAD_COURSES_BEGIN";
 export const LOAD_COURSES_SUCCESS = "LOAD_COURSES_SUCCESS";
 export const LOAD_COURSES_ERROR = "LOAD_COURSES_ERROR";
 
+export const OPEN_NEW_COURSE_MODAL = "OPEN_NEW_COURSE_MODAL";
+export const CLOSE_NEW_COURSE_MODAL = "CLOSE_NEW_COURSE_MODAL";
+
 export const addCourse = (name, price) => {
   return dispatch => {
     dispatch({ type: ADD_COURSE_BEGIN });
@@ -33,3 +36,11 @@ export const loadCourses = () => {
       });
   };
 };
+
+export const openNewCourseModal = () => ({
+  type: OPEN_NEW_COURSE_MODAL
+});
+
+export const closeNewCourseModal = () => ({
+  type: CLOSE_NEW_COURSE_MODAL
+});

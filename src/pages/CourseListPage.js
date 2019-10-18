@@ -1,25 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import Modal from "react-modal";
-import { addCourse } from "../actions";
+import NewCourse from "../components/NewCourse";
+import { openNewCourseModal, closeNewCourseModal } from "../actions";
 import "./CourseListPage.css";
 
 const CourseListPage = ({
-  saveInProgress,
-  saveError,
   coursesLoading,
   coursesError,
   courses,
-  dispatch
+  isModalOpen,
+  openNewCourseModal,
+  closeNewCourseModal
 }) => {
-  const [courseName, setCourseName] = useState("");
-  const [coursePrice, setCoursePrice] = useState("");
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    dispatch(addCourse(courseName, coursePrice));
-  };
-
   if (coursesLoading) {
     return <div>Loading...</div>;
   }
@@ -29,37 +22,13 @@ const CourseListPage = ({
   }
 
   return courses.length === 0 ? (
-    <div className="CreateCourse">
-      <h1>Create Your First Course</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Course Name:
-          <input
-            value={courseName}
-            onChange={e => setCourseName(e.target.value)}
-            disabled={saveInProgress}
-          />
-        </label>
-        <label>
-          Course Price:
-          <input
-            value={coursePrice}
-            onChange={e => setCoursePrice(e.target.value)}
-            disabled={saveInProgress}
-          />
-        </label>
-        {saveError && (
-          <div className="error-message">Error: {saveError.message}</div>
-        )}
-        <button type="submit" disabled={saveInProgress}>
-          Create Course
-        </button>
-      </form>
-    </div>
+    <div className="CreateCourse"></div>
   ) : (
     <div className="CourseList">
       <h1>Your Courses</h1>
-      <button className="new-course-btn">New Course</button>
+      <button onClick={openNewCourseModal} className="new-course-btn">
+        New Course
+      </button>
       <ul>
         {courses.map(course => (
           <li key={course.id}>
@@ -68,7 +37,9 @@ const CourseListPage = ({
           </li>
         ))}
       </ul>
-      <Modal isOpen={true}>hello world</Modal>
+      <Modal isOpen={isModalOpen} onRequestClose={closeNewCourseModal}>
+        <NewCourse />
+      </Modal>
     </div>
   );
 };
@@ -76,8 +47,14 @@ const CourseListPage = ({
 const mapState = state => ({
   coursesLoading: state.coursesLoading,
   coursesError: state.coursesError,
-  saveInProgress: state.saveInProgress,
-  saveError: state.saveError,
+  isModalOpen: state.newCourseModalOpen,
   courses: state.courses
 });
-export default connect(mapState)(CourseListPage);
+const mapDispatch = {
+  openNewCourseModal,
+  closeNewCourseModal
+};
+export default connect(
+  mapState,
+  mapDispatch
+)(CourseListPage);

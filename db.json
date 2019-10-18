@@ -4,6 +4,36 @@
       "name": "asdf",
       "price": 9000,
       "id": 1
+    },
+    {
+      "name": "Pure React ",
+      "price": 19,
+      "id": 2
+    },
+    {
+      "name": "blah",
+      "price": 500,
+      "id": 3
+    },
+    {
+      "name": "blah",
+      "price": 500,
+      "id": 4
+    },
+    {
+      "name": "asdfl",
+      "price": 100,
+      "id": 5
+    },
+    {
+      "name": "asdfl",
+      "price": 100,
+      "id": 6
+    },
+    {
+      "name": "new course",
+      "price": 92929,
+      "id": 7
     }
   ]
 }
