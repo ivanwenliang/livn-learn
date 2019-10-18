@@ -22,7 +22,9 @@ const CourseListPage = ({
   }
 
   return courses.length === 0 ? (
-    <div className="CreateCourse"></div>
+    <div className="CreateCourse">
+      <NewCourse />
+    </div>
   ) : (
     <div className="CourseList">
       <h1>Your Courses</h1>
