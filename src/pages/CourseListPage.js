@@ -2,11 +2,15 @@ import React from "react";
 import { connect } from "react-redux";
 
 const CourseListPage = ({ courses }) => {
-  // Create new course
-  // List of courses
   return courses.length === 0 ? (
     <div>
       <h1>Create Your First Course</h1>
+      <form>
+        <label>
+          Course Name:
+          <input></input>
+        </label>
+      </form>
     </div>
   ) : (
     <div>

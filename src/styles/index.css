@@ -582,6 +582,10 @@ video {
   height: auto;
 }
 
+body {
+  background-color: #f7fafc;
+}
+
 .container {
   width: 100%;
 }
