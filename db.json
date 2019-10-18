@@ -1,3 +1,9 @@
 {
-  "courses": []
+  "courses": [
+    {
+      "name": "asdf",
+      "price": 9000,
+      "id": 1
+    }
+  ]
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import Modal from "react-modal";
 import { addCourse } from "../actions";
 import "./CourseListPage.css";
 
@@ -58,6 +59,7 @@ const CourseListPage = ({
   ) : (
     <div className="CourseList">
       <h1>Your Courses</h1>
+      <button className="new-course-btn">New Course</button>
       <ul>
         {courses.map(course => (
           <li key={course.id}>
@@ -66,6 +68,7 @@ const CourseListPage = ({
           </li>
         ))}
       </ul>
+      <Modal isOpen={true}>hello world</Modal>
     </div>
   );
 };
