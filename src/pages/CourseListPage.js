@@ -47,10 +47,14 @@ const CourseListPage = ({
       </form>
     </div>
   ) : (
-    <div>
+    <div className="CourseList">
+      <h1>Your Courses</h1>
       <ul>
         {courses.map(course => (
-          <li key={course.id}>{course.name}</li>
+          <li key={course.id}>
+            <div className="title">{course.name}</div>
+            <div className="price">$$$</div>
+          </li>
         ))}
       </ul>
     </div>

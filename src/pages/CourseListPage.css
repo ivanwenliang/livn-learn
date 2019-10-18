@@ -57,3 +57,30 @@
   background-color: #dec5e2;
   border-bottom: 2px solid #f0e9fd;
 }
+
+/* Course Listing */
+
+.CourseList {
+  padding: 20px;
+}
+.CourseList h1 {
+  font-family: "Bebas Neue", "Helvetica Neue", arial, sans-serif;
+  font-size: 60px;
+  color: #43005a;
+  margin-top: 0.2em;
+}
+.CourseList ul {
+  list-style: none;
+  padding: 0;
+}
+.CourseList li {
+  margin-bottom: 20px;
+  line-height: 1.5;
+  font-weight: 600;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 3px;
+}
+.CourseList .price {
+  opacity: 0.5;
+}
