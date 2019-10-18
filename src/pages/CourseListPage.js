@@ -3,7 +3,14 @@ import { connect } from "react-redux";
 import { addCourse } from "../actions";
 import "./CourseListPage.css";
 
-const CourseListPage = ({ isLoading, error, courses, dispatch }) => {
+const CourseListPage = ({
+  saveInProgress,
+  saveError,
+  coursesLoading,
+  coursesError,
+  courses,
+  dispatch
+}) => {
   const [courseName, setCourseName] = useState("");
 
   const handleSubmit = e => {
@@ -11,11 +18,12 @@ const CourseListPage = ({ isLoading, error, courses, dispatch }) => {
     dispatch(addCourse(courseName));
   };
 
-  if (isLoading) {
+  if (coursesLoading) {
     return <div>Loading...</div>;
   }
-  if (error) {
-    return <div>{error.message}</div>;
+
+  if (coursesError) {
+    return <div>{coursesError.message}</div>;
   }
 
   return courses.length === 0 ? (
@@ -27,8 +35,14 @@ const CourseListPage = ({ isLoading, error, courses, dispatch }) => {
           <input
             value={courseName}
             onChange={e => setCourseName(e.target.value)}
+            disabled={saveInProgress}
           />
-          <button type="submit">Create Course</button>
+          {saveError && (
+            <div className="error-message">Error: {saveError.message}</div>
+          )}
+          <button type="submit" disabled={saveInProgress}>
+            Create Course
+          </button>
         </label>
       </form>
     </div>
@@ -44,8 +58,10 @@ const CourseListPage = ({ isLoading, error, courses, dispatch }) => {
 };
 
 const mapState = state => ({
-  isLoading: state.isLoading,
-  error: state.error,
+  coursesLoading: state.coursesLoading,
+  coursesError: state.coursesError,
+  saveInProgress: state.saveInProgress,
+  saveError: state.saveError,
   courses: state.courses
 });
 export default connect(mapState)(CourseListPage);
