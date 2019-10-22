@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import NotFoundPage from "./NotFoundPage";
+import NewLesson from "../components/NewLesson";
 import Loading from "../components/Loading";
 import "./CourseDetailPage.css";
 
-const CourseDetailPage = ({ courseId, course, loading }) => {
+const CourseDetailPage = ({ course, loading }) => {
   if (loading) {
     return <Loading />;
   }
@@ -19,7 +20,9 @@ const CourseDetailPage = ({ courseId, course, loading }) => {
         <h1>{course.name}</h1>
       </header>
       <div className="content">
-        <div className="sidebar"></div>
+        <div className="sidebar">
+          <NewLesson courseId={course.id} />
+        </div>
         <div className="lesson"></div>
       </div>
     </div>

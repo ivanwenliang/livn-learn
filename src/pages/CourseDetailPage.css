@@ -29,6 +29,12 @@
   display: flex;
 }
 
+.CourseDetail .sidebar {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
 @media only screen and (min-width: 638px) {
   .CourseDetail .content {
     flex-direction: row;
