@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import NotFoundPage from "./NotFoundPage";
 import NewLesson from "../components/NewLesson";
 import Loading from "../components/Loading";
 import { getLessonsByCourse, getCourseById } from "../selectors";
+import { loadLessons } from "../actions";
 import "./CourseDetailPage.css";
 
-const CourseDetailPage = ({ course, loading, lessons }) => {
+const CourseDetailPage = ({ course, loading, lessons, loadLessons }) => {
   if (loading) {
     return <Loading />;
   }
@@ -14,6 +15,10 @@ const CourseDetailPage = ({ course, loading, lessons }) => {
   if (!course) {
     return <NotFoundPage />;
   }
+
+  useEffect(() => {
+    loadLessons(course.id);
+  }, [course]);
 
   return (
     <div className="CourseDetail">
@@ -38,11 +43,16 @@ const CourseDetailPage = ({ course, loading, lessons }) => {
 };
 
 const mapState = (state, ownProps) => {
-  const courseId = parseInt(ownProps.courseId, 10);
   return {
     loading: state.courses.coursesLoading,
     lessons: getLessonsByCourse(state, ownProps),
     course: getCourseById(state, ownProps)
   };
 };
-export default connect(mapState)(CourseDetailPage);
+const mapDispatch = {
+  loadLessons
+};
+export default connect(
+  mapState,
+  mapDispatch
+)(CourseDetailPage);
