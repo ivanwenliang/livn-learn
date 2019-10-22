@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import NotFoundPage from "./NotFoundPage";
 import NewLesson from "../components/NewLesson";
 import Loading from "../components/Loading";
-import { getLessonsByCourse } from "../selectors";
+import { getLessonsByCourse, getCourseById } from "../selectors";
 import "./CourseDetailPage.css";
 
 const CourseDetailPage = ({ course, loading, lessons }) => {
@@ -42,7 +42,7 @@ const mapState = (state, ownProps) => {
   return {
     loading: state.courses.coursesLoading,
     lessons: getLessonsByCourse(state, ownProps),
-    course: state.courses.courses.find(course => course.id === courseId)
+    course: getCourseById(state, ownProps)
   };
 };
 export default connect(mapState)(CourseDetailPage);

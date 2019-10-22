@@ -4,6 +4,11 @@
       "name": "asdf",
       "price": 9191,
       "id": 1
+    },
+    {
+      "name": "asdf",
+      "price": 91919,
+      "id": 2
     }
   ],
   "lessons": [
