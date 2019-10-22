@@ -8,6 +8,10 @@ export const getCourses = () => {
   return fetch(PREFIX + "/courses").then(res => res.json());
 };
 
+export const createLesson = (name, courseId) => {
+  return postData(PREFIX + "/lessons", { name, courseId });
+};
+
 const postData = (url = ``, data = {}) => {
   // Default options are marked with *
   return fetch(url, {

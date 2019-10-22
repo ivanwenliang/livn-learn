@@ -5,5 +5,17 @@
       "price": 9999,
       "id": 1
     }
+  ],
+  "lessons": [
+    {
+      "name": "first",
+      "courseId": 1,
+      "id": 1
+    },
+    {
+      "name": "second",
+      "courseId": 1,
+      "id": 2
+    }
   ]
 }

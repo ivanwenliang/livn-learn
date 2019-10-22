@@ -18,7 +18,9 @@ const initialState = {
   saveError: null,
   newCourseModalOpen: false,
   courses: [],
-  lessons: []
+  lessons: [],
+  lessonSaveInProgress: false,
+  lessonSaveError: null
 };
 
 const reducer = produce((draft, action) => {
