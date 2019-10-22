@@ -24,7 +24,7 @@ const CourseDetailPage = ({ course, loading, lessons }) => {
           {lessons.length > 0 && (
             <ul>
               {lessons.map(lesson => (
-                <li>{lesson.name}</li>
+                <li key={lesson.id}>{lesson.name}</li>
               ))}
             </ul>
           )}

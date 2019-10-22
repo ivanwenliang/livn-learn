@@ -19,6 +19,12 @@ const NewLesson = ({ addLesson, courseId }) => {
     setEditing(false);
   };
 
+  useEffect(() => {
+    if (editing) {
+      inputRef.current.focus();
+    }
+  }, [editing]);
+
   return editing ? (
     <form className="add-lesson-button editing" onSubmit={commitEdit}>
       <input
@@ -26,6 +32,7 @@ const NewLesson = ({ addLesson, courseId }) => {
         type="text"
         value={title}
         onChange={e => setTitle(e.target.value)}
+        onBlur={reset}
         placeholder="Name the lesson"
       />
     </form>
