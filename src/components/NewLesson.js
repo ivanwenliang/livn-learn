@@ -10,6 +10,12 @@ const NewLesson = ({ addLesson, courseId }) => {
   const commitEdit = e => {
     e.preventDefault();
     addLesson(title, courseId);
+    reset();
+  };
+
+  const reset = () => {
+    setTitle("");
+    setEditing(false);
   };
 
   return editing ? (
