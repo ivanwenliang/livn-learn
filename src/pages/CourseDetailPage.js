@@ -1,10 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import NotFoundPage from "./NotFoundPage";
+import Loading from "../components/Loading";
+import "./CourseDetailPage.css";
 
 const CourseDetailPage = ({ courseId, course, loading }) => {
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (!course) {
@@ -12,8 +14,14 @@ const CourseDetailPage = ({ courseId, course, loading }) => {
   }
 
   return (
-    <div>
-      Viewing {courseId} -- {course.name}
+    <div className="CourseDetail">
+      <header>
+        <h1>{course.name}</h1>
+      </header>
+      <div className="content">
+        <div className="sidebar"></div>
+        <div className="lesson"></div>
+      </div>
     </div>
   );
 };
