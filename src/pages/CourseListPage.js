@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "@reach/router";
 import Modal from "react-modal";
 import NewCourse from "../components/NewCourse";
+import Loading from "../components/Loading";
 import { openNewCourseModal, closeNewCourseModal } from "../actions";
 import "./CourseListPage.css";
 
@@ -15,7 +16,11 @@ const CourseListPage = ({
   closeNewCourseModal
 }) => {
   if (coursesLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
   }
 
   if (coursesError) {
@@ -50,10 +55,10 @@ const CourseListPage = ({
 };
 
 const mapState = state => ({
-  coursesLoading: state.coursesLoading,
-  coursesError: state.coursesError,
-  isModalOpen: state.newCourseModalOpen,
-  courses: state.courses
+  coursesLoading: state.courses.coursesLoading,
+  coursesError: state.courses.coursesError,
+  isModalOpen: state.courses.newCourseModalOpen,
+  courses: state.courses.courses
 });
 const mapDispatch = {
   openNewCourseModal,
