@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { connect } from "react-redux";
 import { addLesson } from "../actions";
 import "./NewLesson.css";
@@ -6,6 +6,7 @@ import "./NewLesson.css";
 const NewLesson = ({ addLesson, courseId }) => {
   const [editing, setEditing] = useState(false);
   const [title, setTitle] = useState("");
+  const inputRef = useRef();
 
   const commitEdit = e => {
     e.preventDefault();
@@ -21,6 +22,7 @@ const NewLesson = ({ addLesson, courseId }) => {
   return editing ? (
     <form className="add-lesson-button editing" onSubmit={commitEdit}>
       <input
+        ref={inputRef}
         type="text"
         value={title}
         onChange={e => setTitle(e.target.value)}
