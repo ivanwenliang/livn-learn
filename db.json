@@ -6,5 +6,26 @@
       "id": 1
     }
   ],
-  "lessons": []
+  "lessons": [
+    {
+      "name": "asdf",
+      "courseId": 1,
+      "id": 1
+    },
+    {
+      "name": "asdf",
+      "courseId": 1,
+      "id": 2
+    },
+    {
+      "name": "1",
+      "courseId": 1,
+      "id": 3
+    },
+    {
+      "name": "2",
+      "courseId": 1,
+      "id": 4
+    }
+  ]
 }
