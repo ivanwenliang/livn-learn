@@ -14,8 +14,8 @@ import {
 
 const initialState = {
   lessons: {},
-  lessonSaveInProgress: false,
-  lessonSaveError: null
+  saving: false,
+  error: null
 };
 
 const reducer = produce((draft, action) => {
@@ -35,28 +35,28 @@ const reducer = produce((draft, action) => {
       draft.error = action.error;
       return;
     case ADD_LESSON_BEGIN:
-      draft.lessonSaveInProgress = true;
-      draft.lessonSaveError = null;
+      draft.saving = true;
+      draft.error = null;
       return;
     case ADD_LESSON_SUCCESS:
-      draft.lessonSaveInProgress = false;
+      draft.saving = false;
       draft.lessons[action.payload.id] = action.payload;
       return;
     case ADD_LESSON_ERROR:
-      draft.lessonSaveInProgress = false;
-      draft.lessonSaveError = action.error;
+      draft.saving = false;
+      draft.error = action.error;
       return;
     case SAVE_LESSON_BEGIN:
-      draft.lessonSaveInProgress = true;
-      draft.lessonSaveError = null;
+      draft.saving = true;
+      draft.error = null;
       return;
     case SAVE_LESSON_SUCCESS:
-      draft.lessonSaveInProgress = false;
+      draft.saving = false;
       draft.lessons[action.payload.id] = action.payload;
       return;
     case SAVE_LESSON_ERROR:
-      draft.lessonSaveInProgress = false;
-      draft.lessonSaveError = action.error;
+      draft.saving = false;
+      draft.error = action.error;
       return;
     case RESET_LESSON_ERROR:
       draft.error = null;
