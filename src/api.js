@@ -18,10 +18,22 @@ export const getLessons = courseId => {
   );
 };
 
+export const updateLesson = lesson => {
+  return putData(PREFIX + `/lessons/${lesson.id}`, lesson);
+};
+
 const postData = (url = ``, data = {}) => {
+  return fetchWithData(url, data, "POST");
+};
+
+const putData = (url = ``, data = {}) => {
+  return fetchWithData(url, data, "PUT");
+};
+
+const fetchWithData = (url = ``, data = {}, method = "POST") => {
   // Default options are marked with *
   return fetch(url, {
-    method: "POST",
+    method,
     headers: {
       "Content-Type": "application/json"
     },

@@ -6,6 +6,9 @@ import {
   LOAD_LESSONS_BEGIN,
   LOAD_LESSONS_SUCCESS,
   LOAD_LESSONS_ERROR,
+  SAVE_LESSON_BEGIN,
+  SAVE_LESSON_SUCCESS,
+  SAVE_LESSON_ERROR,
   RESET_LESSON_ERROR
 } from "../actions";
 
@@ -40,6 +43,18 @@ const reducer = produce((draft, action) => {
       draft.lessons[action.payload.id] = action.payload;
       return;
     case ADD_LESSON_ERROR:
+      draft.lessonSaveInProgress = false;
+      draft.lessonSaveError = action.error;
+      return;
+    case SAVE_LESSON_BEGIN:
+      draft.lessonSaveInProgress = true;
+      draft.lessonSaveError = null;
+      return;
+    case SAVE_LESSON_SUCCESS:
+      draft.lessonSaveInProgress = false;
+      draft.lessons[action.payload.id] = action.payload;
+      return;
+    case SAVE_LESSON_ERROR:
       draft.lessonSaveInProgress = false;
       draft.lessonSaveError = action.error;
       return;

@@ -1,4 +1,10 @@
-import { createCourse, getCourses, createLesson, getLessons } from "./api";
+import {
+  createCourse,
+  getCourses,
+  createLesson,
+  getLessons,
+  updateLesson
+} from "./api";
 
 export const ADD_COURSE_BEGIN = "ADD_COURSE_BEGIN";
 export const ADD_COURSE_SUCCESS = "ADD_COURSE_SUCCESS";
@@ -19,6 +25,10 @@ export const LOAD_LESSONS_BEGIN = "LOAD_LESSONS_BEGIN";
 export const LOAD_LESSONS_SUCCESS = "LOAD_LESSONS_SUCCESS";
 export const LOAD_LESSONS_ERROR = "LOAD_LESSONS_ERROR";
 
+export const SAVE_LESSON_BEGIN = "SAVE_LESSON_BEGIN";
+export const SAVE_LESSON_SUCCESS = "SAVE_LESSON_SUCCESS";
+export const SAVE_LESSON_ERROR = "SAVE_LESSON_ERROR";
+
 export const RESET_LESSON_ERROR = "RESET_LESSON_ERROR";
 
 export const addCourse = (name, price) => {
@@ -37,7 +47,7 @@ export const addCourse = (name, price) => {
 export const addLesson = (name, courseId) => {
   return dispatch => {
     dispatch({ type: ADD_LESSON_BEGIN });
-    createLesson(name, courseId)
+    return createLesson(name, courseId)
       .then(course => {
         dispatch({
           type: ADD_LESSON_SUCCESS,
@@ -46,6 +56,22 @@ export const addLesson = (name, courseId) => {
       })
       .catch(error => {
         dispatch({ type: ADD_LESSON_ERROR, error });
+      });
+  };
+};
+
+export const saveLesson = lesson => {
+  return dispatch => {
+    dispatch({ type: SAVE_LESSON_BEGIN });
+    return updateLesson(lesson)
+      .then(lesson => {
+        dispatch({
+          type: SAVE_LESSON_SUCCESS,
+          payload: lesson
+        });
+      })
+      .catch(error => {
+        dispatch({ type: SAVE_LESSON_ERROR, error });
       });
   };
 };
