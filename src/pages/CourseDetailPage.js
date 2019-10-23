@@ -1,13 +1,20 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import NotFoundPage from "./NotFoundPage";
-import NewLesson from "../components/NewLesson";
+import Lesson from "../components/Lesson";
 import Loading from "../components/Loading";
 import { getLessonsByCourse, getCourseById } from "../selectors";
-import { loadLessons } from "../actions";
+import { loadLessons, addLesson, saveLesson } from "../actions";
 import "./CourseDetailPage.css";
 
-const CourseDetailPage = ({ course, loading, lessons, loadLessons }) => {
+const CourseDetailPage = ({
+  course,
+  loading,
+  lessons,
+  loadLessons,
+  addLesson,
+  saveLesson
+}) => {
   // Must call useEffect before other conditional renders, to follow rule of hooks
   useEffect(() => {
     // Prevents error from trying to load undefined if no course found
@@ -35,12 +42,41 @@ const CourseDetailPage = ({ course, loading, lessons, loadLessons }) => {
             <ul className="lessons">
               {lessons.map(lesson => (
                 <li key={lesson.id}>
-                  <div className="lesson-item">{lesson.name}</div>
+                  <Lesson
+                    className="lesson-item"
+                    lesson={lesson}
+                    onSubmit={name => saveLesson({ ...lesson, name })}
+                  >
+                    {edit => (
+                      <div className="lesson-item">
+                        {lesson.name}
+                        <button
+                          onClick={() => edit(lesson.name)}
+                          className="edit-lesson-btn"
+                        >
+                          Edit
+                        </button>
+                      </div>
+                    )}
+                  </Lesson>
                 </li>
               ))}
             </ul>
           )}
-          <NewLesson courseId={course.id} />
+          <Lesson
+            className="add-lesson-button"
+            onSubmit={title => addLesson(title, course.id)}
+          >
+            {edit => (
+              <button
+                className="add-lesson-button"
+                onClick={edit}
+                type="submit"
+              >
+                New Lesson
+              </button>
+            )}
+          </Lesson>
         </div>
         <div className="lesson"></div>
       </div>
@@ -56,7 +92,9 @@ const mapState = (state, ownProps) => {
   };
 };
 const mapDispatch = {
-  loadLessons
+  loadLessons,
+  addLesson,
+  saveLesson
 };
 export default connect(
   mapState,
