@@ -36,6 +36,7 @@ const reducer = produce((draft, action) => {
       draft.lessonSaveError = null;
       return;
     case ADD_LESSON_SUCCESS:
+      draft.lessonSaveInProgress = false;
       draft.lessons[action.payload.id] = action.payload;
       return;
     case ADD_LESSON_ERROR:

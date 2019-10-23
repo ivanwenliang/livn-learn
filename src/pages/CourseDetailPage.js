@@ -8,6 +8,14 @@ import { loadLessons } from "../actions";
 import "./CourseDetailPage.css";
 
 const CourseDetailPage = ({ course, loading, lessons, loadLessons }) => {
+  // Must call useEffect before other conditional renders, to follow rule of hooks
+  useEffect(() => {
+    // Prevents error from trying to load undefined if no course found
+    if (course) {
+      loadLessons(course.id);
+    }
+  }, [course, loadLessons]);
+
   if (loading) {
     return <Loading />;
   }
@@ -15,10 +23,6 @@ const CourseDetailPage = ({ course, loading, lessons, loadLessons }) => {
   if (!course) {
     return <NotFoundPage />;
   }
-
-  useEffect(() => {
-    loadLessons(course.id);
-  }, [course]);
 
   return (
     <div className="CourseDetail">
