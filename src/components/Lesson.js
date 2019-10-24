@@ -1,10 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import { connect } from "react-redux";
-import { addLesson, resetLessonError } from "../actions";
+import { deleteLesson, resetLessonError } from "../actions";
 import "./Lesson.css";
 
 const Lesson = ({
   resetError,
+  deleteLesson,
   saving,
   error,
   onSubmit,
@@ -44,6 +45,10 @@ const Lesson = ({
     resetError();
   };
 
+  const performDelete = () => {
+    deleteLesson(lesson);
+  };
+
   useEffect(() => {
     if (editing) {
       inputRef.current.focus();
@@ -68,7 +73,7 @@ const Lesson = ({
       {error && <div>{error.message}</div>}
     </>
   ) : (
-    children(beginEditing)
+    children(beginEditing, performDelete)
   );
 };
 
@@ -77,7 +82,7 @@ const mapState = state => ({
   error: state.lessons.error
 });
 const mapDispatch = {
-  addLesson,
+  deleteLesson,
   resetError: resetLessonError
 };
 export default connect(

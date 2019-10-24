@@ -22,12 +22,20 @@ export const updateLesson = lesson => {
   return putData(PREFIX + `/lessons/${lesson.id}`, lesson);
 };
 
+export const destroyLesson = lesson => {
+  return deleteData(PREFIX + `/lessons/${lesson.id}`);
+};
+
 const postData = (url = ``, data = {}) => {
   return fetchWithData(url, data, "POST");
 };
 
 const putData = (url = ``, data = {}) => {
   return fetchWithData(url, data, "PUT");
+};
+
+const deleteData = (url = ``, data = {}) => {
+  return fetchWithData(url, data, "DELETE");
 };
 
 const fetchWithData = (url = ``, data = {}, method = "POST") => {

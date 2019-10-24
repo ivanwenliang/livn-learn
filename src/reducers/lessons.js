@@ -3,6 +3,7 @@ import {
   ADD_LESSON_BEGIN,
   ADD_LESSON_SUCCESS,
   ADD_LESSON_ERROR,
+  DELETE_LESSON_SUCCESS,
   LOAD_LESSONS_BEGIN,
   LOAD_LESSONS_SUCCESS,
   LOAD_LESSONS_ERROR,
@@ -57,6 +58,9 @@ const reducer = produce((draft, action) => {
     case SAVE_LESSON_ERROR:
       draft.saving = false;
       draft.error = action.error;
+      return;
+    case DELETE_LESSON_SUCCESS:
+      delete draft.lessons[action.payload.id];
       return;
     case RESET_LESSON_ERROR:
       draft.error = null;

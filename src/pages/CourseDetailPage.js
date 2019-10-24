@@ -47,7 +47,7 @@ const CourseDetailPage = ({
                     lesson={lesson}
                     onSubmit={name => saveLesson({ ...lesson, name })}
                   >
-                    {edit => (
+                    {(edit, remove) => (
                       <div className="lesson-item">
                         <span>{lesson.name}</span>
                         <button
@@ -56,7 +56,9 @@ const CourseDetailPage = ({
                         >
                           Edit
                         </button>
-                        <button className="delete-lesson-btn">Delete</button>
+                        <button onClick={remove} className="delete-lesson-btn">
+                          Delete
+                        </button>
                       </div>
                     )}
                   </Lesson>

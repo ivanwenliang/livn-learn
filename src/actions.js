@@ -3,7 +3,8 @@ import {
   getCourses,
   createLesson,
   getLessons,
-  updateLesson
+  updateLesson,
+  destroyLesson
 } from "./api";
 
 export const ADD_COURSE_BEGIN = "ADD_COURSE_BEGIN";
@@ -20,6 +21,10 @@ export const CLOSE_NEW_COURSE_MODAL = "CLOSE_NEW_COURSE_MODAL";
 export const ADD_LESSON_BEGIN = "ADD_LESSON_BEGIN";
 export const ADD_LESSON_SUCCESS = "ADD_LESSON_SUCCESS";
 export const ADD_LESSON_ERROR = "ADD_LESSON_ERROR";
+
+export const DELETE_LESSON_BEGIN = "DELETE_LESSON_BEGIN";
+export const DELETE_LESSON_SUCCESS = "DELETE_LESSON_SUCCESS";
+export const DELETE_LESSON_ERROR = "DELETE_LESSON_ERROR";
 
 export const LOAD_LESSONS_BEGIN = "LOAD_LESSONS_BEGIN";
 export const LOAD_LESSONS_SUCCESS = "LOAD_LESSONS_SUCCESS";
@@ -64,7 +69,7 @@ export const saveLesson = lesson => {
   return dispatch => {
     dispatch({ type: SAVE_LESSON_BEGIN });
     return updateLesson(lesson)
-      .then(lesson => {
+      .then(() => {
         dispatch({
           type: SAVE_LESSON_SUCCESS,
           payload: lesson
@@ -72,6 +77,22 @@ export const saveLesson = lesson => {
       })
       .catch(error => {
         dispatch({ type: SAVE_LESSON_ERROR, error });
+      });
+  };
+};
+
+export const deleteLesson = lesson => {
+  return dispatch => {
+    dispatch({ type: DELETE_LESSON_BEGIN });
+    return destroyLesson(lesson)
+      .then(lesson => {
+        dispatch({
+          type: DELETE_LESSON_SUCCESS,
+          payload: lesson
+        });
+      })
+      .catch(error => {
+        dispatch({ type: DELETE_LESSON_ERROR, error });
       });
   };
 };
