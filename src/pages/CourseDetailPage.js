@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link, Match } from "@reach/router";
 import NotFoundPage from "./NotFoundPage";
 import Lesson from "../components/Lesson";
 import Loading from "../components/Loading";
@@ -13,7 +14,8 @@ const CourseDetailPage = ({
   lessons,
   loadLessons,
   addLesson,
-  saveLesson
+  saveLesson,
+  children
 }) => {
   // Must call useEffect before other conditional renders, to follow rule of hooks
   useEffect(() => {
@@ -49,7 +51,7 @@ const CourseDetailPage = ({
                   >
                     {(edit, remove) => (
                       <div className="lesson-item">
-                        <span>{lesson.name}</span>
+                        <Link to={`lessons/${lesson.id}`}>{lesson.name}</Link>
                         <button
                           onClick={() => edit(lesson.name)}
                           className="edit-lesson-btn"
@@ -81,7 +83,7 @@ const CourseDetailPage = ({
             )}
           </Lesson>
         </div>
-        <div className="lesson"></div>
+        <div className="lesson">{children}</div>
       </div>
     </div>
   );
