@@ -61,6 +61,7 @@ export const addLesson = (name, courseId) => {
       })
       .catch(error => {
         dispatch({ type: ADD_LESSON_ERROR, error });
+        throw error;
       });
   };
 };
@@ -69,7 +70,7 @@ export const saveLesson = lesson => {
   return dispatch => {
     dispatch({ type: SAVE_LESSON_BEGIN });
     return updateLesson(lesson)
-      .then(() => {
+      .then(lesson => {
         dispatch({
           type: SAVE_LESSON_SUCCESS,
           payload: lesson
@@ -77,6 +78,7 @@ export const saveLesson = lesson => {
       })
       .catch(error => {
         dispatch({ type: SAVE_LESSON_ERROR, error });
+        throw error;
       });
   };
 };
@@ -85,7 +87,7 @@ export const deleteLesson = lesson => {
   return dispatch => {
     dispatch({ type: DELETE_LESSON_BEGIN });
     return destroyLesson(lesson)
-      .then(lesson => {
+      .then(() => {
         dispatch({
           type: DELETE_LESSON_SUCCESS,
           payload: lesson
@@ -93,6 +95,7 @@ export const deleteLesson = lesson => {
       })
       .catch(error => {
         dispatch({ type: DELETE_LESSON_ERROR, error });
+        throw error;
       });
   };
 };

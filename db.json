@@ -13,21 +13,6 @@
   ],
   "lessons": [
     {
-      "name": "asdfblah",
-      "courseId": 1,
-      "id": 2
-    },
-    {
-      "name": "1",
-      "courseId": 1,
-      "id": 3
-    },
-    {
-      "name": "2",
-      "courseId": 1,
-      "id": 4
-    },
-    {
       "name": "asdf",
       "courseId": 2,
       "id": 5
@@ -38,9 +23,9 @@
       "id": 6
     },
     {
-      "name": "test",
+      "name": "blah",
       "courseId": 1,
-      "id": 7
+      "id": 10
     }
   ]
 }
