@@ -45,12 +45,18 @@
   border-style: solid;
   border-radius: 3px;
 }
+.delete-lesson-btn,
 .edit-lesson-btn {
   opacity: 0;
   border: none;
   font-size: 10px;
   cursor: pointer;
 }
+.edit-lesson-btn {
+  margin-right: 5px;
+}
+.lesson-item:hover .delete-lesson-btn,
+.delete-lesson-btn:focus,
 .lesson-item:hover .edit-lesson-btn,
 .edit-lesson-btn:focus {
   opacity: 1;

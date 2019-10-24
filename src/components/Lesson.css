@@ -38,3 +38,6 @@ button.add-lesson-button:hover {
   background: #f7f2ff;
   cursor: pointer;
 }
+.lesson-item > *:first-child {
+  flex: 1;
+}
