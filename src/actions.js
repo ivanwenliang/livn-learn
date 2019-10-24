@@ -1,11 +1,12 @@
-import {
-  createCourse,
-  getCourses,
-  createLesson,
-  getLessons,
-  updateLesson,
-  destroyLesson
-} from "./api";
+// import {
+//   createCourse,
+//   getCourses,
+//   createLesson,
+//   getLessons,
+//   updateLesson,
+//   destroyLesson
+// } from "./api";
+import * as api from "./api";
 
 export const ADD_COURSE_BEGIN = "ADD_COURSE_BEGIN";
 export const ADD_COURSE_SUCCESS = "ADD_COURSE_SUCCESS";
@@ -39,7 +40,8 @@ export const RESET_LESSON_ERROR = "RESET_LESSON_ERROR";
 export const addCourse = (name, price) => {
   return dispatch => {
     dispatch({ type: ADD_COURSE_BEGIN });
-    createCourse(name, price)
+    api
+      .addCourse(name, price)
       .then(course => {
         dispatch({ type: ADD_COURSE_SUCCESS, payload: course });
       })
@@ -52,7 +54,8 @@ export const addCourse = (name, price) => {
 export const addLesson = (name, courseId) => {
   return dispatch => {
     dispatch({ type: ADD_LESSON_BEGIN });
-    return createLesson(name, courseId)
+    return api
+      .addLesson(name, courseId)
       .then(course => {
         dispatch({
           type: ADD_LESSON_SUCCESS,
@@ -69,7 +72,8 @@ export const addLesson = (name, courseId) => {
 export const saveLesson = lesson => {
   return dispatch => {
     dispatch({ type: SAVE_LESSON_BEGIN });
-    return updateLesson(lesson)
+    return api
+      .saveLesson(lesson)
       .then(lesson => {
         dispatch({
           type: SAVE_LESSON_SUCCESS,
@@ -86,7 +90,8 @@ export const saveLesson = lesson => {
 export const deleteLesson = lesson => {
   return dispatch => {
     dispatch({ type: DELETE_LESSON_BEGIN });
-    return destroyLesson(lesson)
+    return api
+      .deleteLesson(lesson)
       .then(() => {
         dispatch({
           type: DELETE_LESSON_SUCCESS,
@@ -107,7 +112,8 @@ export const resetLessonError = () => ({
 export const loadCourses = () => {
   return dispatch => {
     dispatch({ type: LOAD_COURSES_BEGIN });
-    getCourses()
+    api
+      .loadCourses()
       .then(courses => {
         dispatch({ type: LOAD_COURSES_SUCCESS, payload: courses });
       })
@@ -120,7 +126,8 @@ export const loadCourses = () => {
 export const loadLessons = courseId => {
   return dispatch => {
     dispatch({ type: LOAD_LESSONS_BEGIN });
-    getLessons(courseId)
+    api
+      .loadLessons(courseId)
       .then(lessons => {
         dispatch({ type: LOAD_LESSONS_SUCCESS, payload: lessons });
       })

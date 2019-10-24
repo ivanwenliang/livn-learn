@@ -1,28 +1,28 @@
 const PREFIX = "/api";
 
-export const createCourse = (name, price) => {
+export const addCourse = (name, price) => {
   return postData(PREFIX + "/courses", { name, price: parseFloat(price) });
 };
 
-export const getCourses = () => {
+export const loadCourses = () => {
   return fetch(PREFIX + "/courses").then(res => res.json());
 };
 
-export const createLesson = (name, courseId) => {
+export const addLesson = (name, courseId) => {
   return postData(PREFIX + "/lessons", { name, courseId });
 };
 
-export const getLessons = courseId => {
+export const loadLessons = courseId => {
   return fetch(PREFIX + "/lessons?courseId=" + courseId).then(res =>
     res.json()
   );
 };
 
-export const updateLesson = lesson => {
+export const saveLesson = lesson => {
   return putData(PREFIX + `/lessons/${lesson.id}`, lesson);
 };
 
-export const destroyLesson = lesson => {
+export const deleteLesson = lesson => {
   return deleteData(PREFIX + `/lessons/${lesson.id}`);
 };
 
