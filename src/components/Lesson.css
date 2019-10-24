@@ -12,12 +12,16 @@
   font-size: 16px;
   margin-bottom: 0;
 }
+.add-lesson-button {
+  min-height: 40px;
+}
 .lesson-item.editing,
 .add-lesson-button.editing {
   flex-direction: column;
   align-items: flex-start;
   box-shadow: 0 0 4px #bb9eec;
   border: 1px dashed #673ab7;
+  padding: 5px;
 }
 .lesson-item.error,
 .add-lesson-button.error {
@@ -31,6 +35,8 @@
   outline: none;
   width: 100%;
   font-size: 16px;
+  padding: 5px;
+  border-radius: 1px;
 }
 button.add-lesson-button:focus,
 button.add-lesson-button:hover {
@@ -40,4 +46,6 @@ button.add-lesson-button:hover {
 }
 .lesson-item > *:first-child {
   flex: 1;
+  text-decoration: none;
+  color: #222;
 }

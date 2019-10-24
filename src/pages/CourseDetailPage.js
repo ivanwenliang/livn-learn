@@ -43,28 +43,40 @@ const CourseDetailPage = ({
           {lessons.length > 0 && (
             <ul className="lessons">
               {lessons.map(lesson => (
-                <li key={lesson.id}>
-                  <Lesson
-                    className="lesson-item"
-                    lesson={lesson}
-                    onSubmit={name => saveLesson({ ...lesson, name })}
-                  >
-                    {(edit, remove) => (
-                      <div className="lesson-item">
-                        <Link to={`lessons/${lesson.id}`}>{lesson.name}</Link>
-                        <button
-                          onClick={() => edit(lesson.name)}
-                          className="edit-lesson-btn"
+                <Match key={lesson.id} path={`lessons/${lesson.id}`}>
+                  {({ match }) => {
+                    const className = `lesson-item ${match ? "selected" : ""}`;
+                    return (
+                      <li>
+                        <Lesson
+                          className={className}
+                          lesson={lesson}
+                          onSubmit={name => saveLesson({ ...lesson, name })}
                         >
-                          Edit
-                        </button>
-                        <button onClick={remove} className="delete-lesson-btn">
-                          Delete
-                        </button>
-                      </div>
-                    )}
-                  </Lesson>
-                </li>
+                          {(edit, remove) => (
+                            <div className={className}>
+                              <Link to={`lessons/${lesson.id}`}>
+                                {lesson.name}
+                              </Link>
+                              <button
+                                onClick={() => edit(lesson.name)}
+                                className="edit-lesson-btn"
+                              >
+                                Edit
+                              </button>
+                              <button
+                                onClick={remove}
+                                className="delete-lesson-btn"
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          )}
+                        </Lesson>
+                      </li>
+                    );
+                  }}
+                </Match>
               ))}
             </ul>
           )}
