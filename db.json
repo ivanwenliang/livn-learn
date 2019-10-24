@@ -21,6 +21,16 @@
       "name": "blah",
       "courseId": 2,
       "id": 6
+    },
+    {
+      "name": "asdf",
+      "courseId": 1,
+      "id": 7
+    },
+    {
+      "name": "asdf",
+      "courseId": 1,
+      "id": 8
     }
   ]
 }
