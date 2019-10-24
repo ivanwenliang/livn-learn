@@ -4,7 +4,8 @@
 //   createLesson,
 //   getLessons,
 //   updateLesson,
-//   destroyLesson
+//   destroyLesson,
+//   saveLesson
 // } from "./api";
 import * as api from "./api";
 
@@ -108,7 +109,7 @@ export const setLessonMarkdown = (lesson, markdown) => {
     saveTimer = setTimeout(() => {
       // Don't save old lesson data, need to get ne lesson state after editing
       const latest = getState().lessons.lessons[lesson.id];
-      dispatch(api.saveLesson(latest));
+      dispatch(saveLesson(latest));
     }, 1000);
   };
 };

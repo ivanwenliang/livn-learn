@@ -15,7 +15,8 @@
     {
       "name": "asdf",
       "courseId": 2,
-      "id": 5
+      "id": 5,
+      "markdown": "asdfasdf\n\nasdf\n"
     },
     {
       "name": "blah",
@@ -25,12 +26,14 @@
     {
       "name": "asdf",
       "courseId": 1,
-      "id": 7
+      "id": 7,
+      "markdown": "adfasdfasdf;lksd\nasdfasdflkieal\nasdflkadfi"
     },
     {
       "name": "asdf",
       "courseId": 1,
-      "id": 8
+      "id": 8,
+      "markdown": "asdf\nasdf\n"
     }
   ]
 }
