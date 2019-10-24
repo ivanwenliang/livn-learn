@@ -89,13 +89,27 @@ export const saveLesson = lesson => {
   };
 };
 
+// Prevent calling save on every letter, save 1 sec after finished typing
+let saveTimer = null;
 export const setLessonMarkdown = (lesson, markdown) => {
-  return {
-    type: SET_LESSON_MARKDOWN,
-    payload: {
-      lesson,
-      markdown
+  return (dispatch, getState) => {
+    dispatch({
+      type: SET_LESSON_MARKDOWN,
+      payload: {
+        lesson,
+        markdown
+      }
+    });
+    // Don't save textarea on every keystroke
+    if (saveTimer) {
+      // If another keystroke happens before 1sec, clear out old timer
+      clearTimeout(saveTimer);
     }
+    saveTimer = setTimeout(() => {
+      // Don't save old lesson data, need to get ne lesson state after editing
+      const latest = getState().lessons.lessons[lesson.id];
+      dispatch(api.saveLesson(latest));
+    }, 1000);
   };
 };
 
