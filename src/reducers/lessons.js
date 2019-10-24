@@ -10,7 +10,8 @@ import {
   SAVE_LESSON_BEGIN,
   SAVE_LESSON_SUCCESS,
   SAVE_LESSON_ERROR,
-  RESET_LESSON_ERROR
+  RESET_LESSON_ERROR,
+  SET_LESSON_MARKDOWN
 } from "../actions";
 
 const initialState = {
@@ -61,6 +62,10 @@ const reducer = produce((draft, action) => {
       return;
     case DELETE_LESSON_SUCCESS:
       delete draft.lessons[action.payload.id];
+      return;
+    case SET_LESSON_MARKDOWN:
+      draft.lessons[action.payload.lesson.id].markdown =
+        action.payload.markdown;
       return;
     case RESET_LESSON_ERROR:
       draft.error = null;
