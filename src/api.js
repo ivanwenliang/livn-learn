@@ -28,6 +28,14 @@ export const deleteLesson = lesson => {
   return deleteData(PREFIX + `/lessons/${lesson.id}`);
 };
 
+export const login = (username, password) => {
+  return postData(PREFIX + "/login", { username, password });
+};
+
+export const signup = (username, password) => {
+  return postData(PREFIX + "/login", { username, password });
+};
+
 const postData = (url = ``, data = {}) => {
   return fetchWithData(url, data, "POST");
 };
