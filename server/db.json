@@ -38,19 +38,18 @@
   ],
   "users": [
     {
-      "username": "asdf",
-      "password": "asdf",
+      "username": "kimi",
+      "password": "kimi",
+      "role": "user",
+      "courses": [],
       "id": 1
     },
     {
-      "username": "blah",
-      "password": "blah",
-      "id": 2
-    },
-    {
       "username": "asdf",
       "password": "asdf",
-      "id": 3
+      "role": "user",
+      "courses": [],
+      "id": 2
     }
   ]
 }

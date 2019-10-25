@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { Redirect } from "@reach/router";
 import { login, signup } from "../actions";
 import "./LoginPage.css";
 
-const LoginPage = ({ error, loading, login, signup }) => {
+const LoginPage = ({ currentUser, error, loading, login, signup }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  if (currentUser) {
+    return <Redirect to="/" noThrow />;
+  }
 
   return (
     <div className="LoginPage">
@@ -46,7 +51,8 @@ const LoginPage = ({ error, loading, login, signup }) => {
 
 const mapState = state => ({
   loading: state.user.loading,
-  error: state.user.error
+  error: state.user.error,
+  currentUser: state.user.user
 });
 const mapDispatch = { signup, login };
 export default connect(
