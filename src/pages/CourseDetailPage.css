@@ -8,9 +8,9 @@
   background-color: #673ab7;
   color: #fff;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   padding: 10px 20px;
 }
 .CourseDetail header h1 {
@@ -27,6 +27,7 @@
 
 .CourseDetail .content {
   display: flex;
+  height: 100vh;
 }
 
 .CourseDetail .sidebar {
@@ -61,7 +62,6 @@
 .edit-lesson-btn:focus {
   opacity: 1;
 }
-
 .lesson-item.selected {
   background: #e9e5ff;
   color: #222;
