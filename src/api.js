@@ -1,5 +1,10 @@
 const PREFIX = "/api";
 
+let authToken = null;
+export const setToken = token => {
+  authToken = token;
+};
+
 export const addCourse = (name, price) => {
   return postData(PREFIX + "/courses", { name, price: parseFloat(price) });
 };
@@ -53,7 +58,8 @@ const fetchWithData = (url = ``, data = {}, method = "POST") => {
   return fetch(url, {
     method,
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      Authorization: authToken ? `Bearer ${authToken}` : undefined
     },
     body: JSON.stringify(data) // body data type must match "Content-Type" header
   })
