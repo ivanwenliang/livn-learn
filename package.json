@@ -5,7 +5,6 @@
   "dependencies": {
     "@reach/router": "^1.2.1",
     "immer": "^4.0.2",
-    "json-server": "^0.15.1",
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-markdown": "^4.2.2",
@@ -20,8 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev-server": "json-server db.json --routes routes.json -w -p 8080"
+    "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:8080",
   "eslintConfig": {
