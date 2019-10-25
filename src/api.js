@@ -5,7 +5,9 @@ export const addCourse = (name, price) => {
 };
 
 export const loadCourses = () => {
-  return fetch(PREFIX + "/courses").then(res => res.json());
+  return fetch(PREFIX + "/courses")
+    .then(handleErrors)
+    .then(res => res.json());
 };
 
 export const addLesson = (name, courseId) => {
@@ -13,9 +15,9 @@ export const addLesson = (name, courseId) => {
 };
 
 export const loadLessons = courseId => {
-  return fetch(PREFIX + "/lessons?courseId=" + courseId).then(res =>
-    res.json()
-  );
+  return fetch(PREFIX + "/lessons?courseId=" + courseId)
+    .then(handleErrors)
+    .then(res => res.json());
 };
 
 export const saveLesson = lesson => {
@@ -46,5 +48,17 @@ const fetchWithData = (url = ``, data = {}, method = "POST") => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(data) // body data type must match "Content-Type" header
-  }).then(response => response.json());
+  })
+    .then(handleErrors)
+    .then(response => response.json());
+};
+
+const handleErrors = response => {
+  if (!response.ok) {
+    return response.json().then(body => {
+      throw new Error(body.message);
+    });
+  } else {
+    return response;
+  }
 };
