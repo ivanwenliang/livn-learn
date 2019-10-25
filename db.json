@@ -35,5 +35,22 @@
       "id": 8,
       "markdown": "**asdf**\nasdf\n\n\n## Woah this is cool"
     }
+  ],
+  "users": [
+    {
+      "username": "asdf",
+      "password": "asdf",
+      "id": 1
+    },
+    {
+      "username": "blah",
+      "password": "blah",
+      "id": 2
+    },
+    {
+      "username": "asdf",
+      "password": "asdf",
+      "id": 3
+    }
   ]
 }

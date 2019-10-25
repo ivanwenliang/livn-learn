@@ -33,7 +33,7 @@ export const login = (username, password) => {
 };
 
 export const signup = (username, password) => {
-  return postData(PREFIX + "/login", { username, password });
+  return postData(PREFIX + "/users", { username, password });
 };
 
 const postData = (url = ``, data = {}) => {

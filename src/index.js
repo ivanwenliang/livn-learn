@@ -8,6 +8,7 @@ import App from "./App";
 import reducer from "./reducers";
 import { loadCourses } from "./actions";
 import "./index.css";
+import { saveAuthToken } from "./middleware";
 
 const composeEnhancers =
   typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -16,7 +17,7 @@ const composeEnhancers =
       })
     : compose;
 
-const enhancer = composeEnhancers(applyMiddleware(thunk));
+const enhancer = composeEnhancers(applyMiddleware(thunk, saveAuthToken));
 
 const store = createStore(reducer, enhancer);
 
