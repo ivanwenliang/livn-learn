@@ -33,7 +33,7 @@
       "name": "asdf",
       "courseId": 1,
       "id": 8,
-      "markdown": "asdf\nasdf\n"
+      "markdown": "**asdf**\nasdf\n\n\n## Woah this is cool"
     }
   ]
 }

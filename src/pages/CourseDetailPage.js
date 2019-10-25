@@ -5,7 +5,12 @@ import NotFoundPage from "./NotFoundPage";
 import Lesson from "../components/Lesson";
 import Loading from "../components/Loading";
 import { getLessonsByCourse, getCourseById } from "../selectors";
-import { loadLessons, addLesson, saveLesson } from "../actions";
+import {
+  loadLessons,
+  addLesson,
+  saveLesson,
+  togglePreviewMode
+} from "../actions";
 import "./CourseDetailPage.css";
 
 const CourseDetailPage = ({
@@ -15,7 +20,9 @@ const CourseDetailPage = ({
   loadLessons,
   addLesson,
   saveLesson,
-  children
+  children,
+  togglePreviewMode,
+  previewMode
 }) => {
   // Must call useEffect before other conditional renders, to follow rule of hooks
   useEffect(() => {
@@ -37,6 +44,9 @@ const CourseDetailPage = ({
     <div className="CourseDetail">
       <header>
         <h1>{course.name}</h1>
+        <button className="preview-btn" onClick={togglePreviewMode}>
+          {previewMode ? "Edit" : "Preview"}
+        </button>
       </header>
       <div className="content">
         <div className="sidebar">
@@ -105,13 +115,15 @@ const mapState = (state, ownProps) => {
   return {
     loading: state.courses.coursesLoading,
     lessons: getLessonsByCourse(state, ownProps),
-    course: getCourseById(state, ownProps)
+    course: getCourseById(state, ownProps),
+    previewMode: state.app.previewMode
   };
 };
 const mapDispatch = {
   loadLessons,
   addLesson,
-  saveLesson
+  saveLesson,
+  togglePreviewMode
 };
 export default connect(
   mapState,
