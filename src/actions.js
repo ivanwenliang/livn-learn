@@ -216,8 +216,6 @@ export const loadLastUser = () => {
     } catch (e) {
       // Reset user if no user found in localStorage
       dispatch({ type: LOGOUT_SUCCESS });
-      // Clear out junk users
-      localStorage.removeItem("currentUser");
     }
   };
 };

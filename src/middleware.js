@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, SIGNUP_SUCCESS } from "./actions";
+import { LOGIN_SUCCESS, SIGNUP_SUCCESS, LOGOUT_SUCCESS } from "./actions";
 import { setToken } from "./api";
 
 export const saveAuthToken = store => next => action => {
@@ -8,5 +8,12 @@ export const saveAuthToken = store => next => action => {
     // Persist token to localStorage so token remains after refreshing
     localStorage.setItem("currentUser", JSON.stringify(action.payload));
   }
+
+  if (action.type === LOGOUT_SUCCESS) {
+    setToken(null);
+    // Clear out junk users
+    localStorage.removeItem("currentUser");
+  }
+
   next(action);
 };
