@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 const getCourses = state => state.courses.courses;
 const getLessons = state => state.lessons.lessons;
 const parseCourseId = (state, props) => parseInt(props.courseId, 10);
+const getCurrentUser = state => state.user.user;
 
 const getSortedLessons = createSelector(
   getLessons,
@@ -28,4 +29,19 @@ export const getCourseById = createSelector(
   getCourses,
   parseCourseId,
   (courses, courseId) => courses.find(course => course.id === courseId)
+);
+
+// Utility function to check if user own course. If not, display sales page
+export const userOwnsCourse = createSelector(
+  getCurrentUser,
+  parseCourseId,
+  (user, courseId) => {
+    if (!user) {
+      return false;
+    }
+    if (user.role === "admin") {
+      return true;
+    }
+    return user.courses.includes(courseId);
+  }
 );

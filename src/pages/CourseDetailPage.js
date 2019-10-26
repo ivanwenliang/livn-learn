@@ -6,7 +6,11 @@ import Lesson from "../components/Lesson";
 import Loading from "../components/Loading";
 import LoginLogout from "../components/LoginLogout";
 import RoleRequired from "../components/RoleRequired";
-import { getLessonsByCourse, getCourseById } from "../selectors";
+import {
+  getLessonsByCourse,
+  getCourseById,
+  userOwnsCourse
+} from "../selectors";
 import {
   loadLessons,
   addLesson,
@@ -15,18 +19,8 @@ import {
 } from "../actions";
 import "./CourseDetailPage.css";
 
-// Utility function to check if user own course. If not, display sales page
-const userOwnsCourse = (user, courseId) => {
-  if (!user) {
-    return false;
-  }
-  if (user.role === "admin") {
-    return true;
-  }
-  return user.courses.includes(parseInt(courseId));
-};
-
 const CourseDetailPage = ({
+  userOwnsCourse,
   currentUser,
   courseId,
   course,
@@ -143,7 +137,8 @@ const mapState = (state, ownProps) => {
     lessons: getLessonsByCourse(state, ownProps),
     course: getCourseById(state, ownProps),
     previewMode: state.app.previewMode,
-    currentUser: state.user.user
+    currentUser: state.user.user,
+    userOwnsCourse: userOwnsCourse(state, ownProps)
   };
 };
 const mapDispatch = {
