@@ -20,7 +20,11 @@ export const addLesson = (name, courseId) => {
 };
 
 export const loadLessons = courseId => {
-  return fetch(PREFIX + "/lessons?courseId=" + courseId)
+  return fetch(PREFIX + "/lessons?courseId=" + courseId, {
+    headers: {
+      Authorization: `Bearer ${authToken}`
+    }
+  })
     .then(handleErrors)
     .then(res => res.json());
 };
