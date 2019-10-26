@@ -50,6 +50,13 @@
       "role": "user",
       "courses": [],
       "id": 2
+    },
+    {
+      "username": "admin",
+      "password": "admin",
+      "role": "admin",
+      "courses": [],
+      "id": 3
     }
   ]
 }

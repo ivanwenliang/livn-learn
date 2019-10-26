@@ -95,20 +95,22 @@ const CourseDetailPage = ({
               ))}
             </ul>
           )}
-          <Lesson
-            className="add-lesson-button"
-            onSubmit={title => addLesson(title, course.id)}
-          >
-            {edit => (
-              <button
-                className="add-lesson-button"
-                onClick={edit}
-                type="submit"
-              >
-                New Lesson
-              </button>
-            )}
-          </Lesson>
+          <RoleRequired role="admin">
+            <Lesson
+              className="add-lesson-button"
+              onSubmit={title => addLesson(title, course.id)}
+            >
+              {edit => (
+                <button
+                  className="add-lesson-button"
+                  onClick={edit}
+                  type="submit"
+                >
+                  New Lesson
+                </button>
+              )}
+            </Lesson>
+          </RoleRequired>
         </div>
         <div className="lesson">{children}</div>
       </div>
