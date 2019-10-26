@@ -4,6 +4,7 @@ import { Link, Match } from "@reach/router";
 import NotFoundPage from "./NotFoundPage";
 import Lesson from "../components/Lesson";
 import Loading from "../components/Loading";
+import LoginLogout from "../components/LoginLogout";
 import { getLessonsByCourse, getCourseById } from "../selectors";
 import {
   loadLessons,
@@ -47,6 +48,7 @@ const CourseDetailPage = ({
         <button className="preview-btn" onClick={togglePreviewMode}>
           {previewMode ? "Edit" : "Preview"}
         </button>
+        <LoginLogout />
       </header>
       <div className="content">
         <div className="sidebar">
