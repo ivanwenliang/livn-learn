@@ -40,6 +40,8 @@ export const SIGNUP_BEGIN = "SIGNUP_BEGIN";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_ERROR = "SIGNUP_ERROR";
 
+export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+
 export const addCourse = (name, price) => {
   return dispatch => {
     dispatch({ type: ADD_COURSE_BEGIN });
@@ -164,18 +166,6 @@ export const loadLessons = courseId => {
   };
 };
 
-export const openNewCourseModal = () => ({
-  type: OPEN_NEW_COURSE_MODAL
-});
-
-export const closeNewCourseModal = () => ({
-  type: CLOSE_NEW_COURSE_MODAL
-});
-
-export const togglePreviewMode = () => ({
-  type: TOGGLE_PREVIEW_MODE
-});
-
 export const login = (username, password) => {
   return dispatch => {
     dispatch({ type: LOGIN_BEGIN });
@@ -201,5 +191,33 @@ export const signup = (username, password) => {
       .catch(error => {
         dispatch({ type: SIGNUP_ERROR, error });
       });
+  };
+};
+
+export const openNewCourseModal = () => ({
+  type: OPEN_NEW_COURSE_MODAL
+});
+
+export const closeNewCourseModal = () => ({
+  type: CLOSE_NEW_COURSE_MODAL
+});
+
+export const togglePreviewMode = () => ({
+  type: TOGGLE_PREVIEW_MODE
+});
+
+export const loadLastUser = () => {
+  return dispatch => {
+    // Fetch user from localStorage and parse returned json if any
+    const json = localStorage.getItem("currentUser");
+    try {
+      const user = JSON.parse(json);
+      dispatch({ type: LOGIN_SUCCESS, payload: user });
+    } catch (e) {
+      // Reset user if no user found in localStorage
+      dispatch({ type: LOGOUT_SUCCESS });
+      // Clear out junk users
+      localStorage.removeItem("currentUser");
+    }
   };
 };

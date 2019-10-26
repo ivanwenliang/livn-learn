@@ -6,7 +6,7 @@ import thunk from "redux-thunk";
 import Modal from "react-modal";
 import App from "./App";
 import reducer from "./reducers";
-import { loadCourses } from "./actions";
+import { loadCourses, loadLastUser } from "./actions";
 import "./index.css";
 import { saveAuthToken } from "./middleware";
 
@@ -23,6 +23,9 @@ const store = createStore(reducer, enhancer);
 
 // Load the courses already in db
 store.dispatch(loadCourses());
+
+// Load logged in user if in localStorage
+store.dispatch(loadLastUser());
 
 Modal.setAppElement("#root");
 

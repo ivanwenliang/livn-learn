@@ -5,7 +5,8 @@ import {
   SIGNUP_BEGIN,
   SIGNUP_SUCCESS,
   LOGIN_ERROR,
-  SIGNUP_ERROR
+  SIGNUP_ERROR,
+  LOGOUT_SUCCESS
 } from "../actions";
 
 const initialState = {
@@ -32,6 +33,11 @@ const reducer = produce((draft, action) => {
       draft.loading = false;
       draft.error = action.error;
       draft.user = null;
+      return;
+    case LOGOUT_SUCCESS:
+      draft.user = null;
+      draft.loading = false;
+      draft.error = null;
       return;
     default:
       return;
