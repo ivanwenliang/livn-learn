@@ -4,6 +4,7 @@ import { Link } from "@reach/router";
 import Modal from "react-modal";
 import NewCourse from "../components/NewCourse";
 import Loading from "../components/Loading";
+import LoginLogout from "../components/LoginLogout";
 import { openNewCourseModal, closeNewCourseModal } from "../actions";
 import "./CourseListPage.css";
 
@@ -34,6 +35,7 @@ const CourseListPage = ({
   ) : (
     <div className="CourseList">
       <h1>Your Courses</h1>
+      <LoginLogout />
       <button onClick={openNewCourseModal} className="new-course-btn">
         New Course
       </button>
