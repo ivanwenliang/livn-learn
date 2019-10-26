@@ -5,6 +5,7 @@ import NotFoundPage from "./NotFoundPage";
 import Lesson from "../components/Lesson";
 import Loading from "../components/Loading";
 import LoginLogout from "../components/LoginLogout";
+import RoleRequired from "../components/RoleRequired";
 import { getLessonsByCourse, getCourseById } from "../selectors";
 import {
   loadLessons,
@@ -45,9 +46,11 @@ const CourseDetailPage = ({
     <div className="CourseDetail">
       <header>
         <h1>{course.name}</h1>
-        <button className="preview-btn" onClick={togglePreviewMode}>
-          {previewMode ? "Edit" : "Preview"}
-        </button>
+        <RoleRequired role="admin">
+          <button className="preview-btn" onClick={togglePreviewMode}>
+            {previewMode ? "Edit" : "Preview"}
+          </button>
+        </RoleRequired>
         <LoginLogout />
       </header>
       <div className="content">
