@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { Link, Match } from "@reach/router";
+import { Link, Match, Redirect } from "@reach/router";
 import NotFoundPage from "./NotFoundPage";
 import Lesson from "../components/Lesson";
 import Loading from "../components/Loading";
@@ -14,6 +14,17 @@ import {
   togglePreviewMode
 } from "../actions";
 import "./CourseDetailPage.css";
+
+// Utility function to check if user own course. If not, display sales page
+const userOwnsCourse = (user, courseId) => {
+  if (!user) {
+    return false;
+  }
+  if (user.role === "admin") {
+    return true;
+  }
+  return user.courses.includes(parseInt(courseId));
+};
 
 const CourseDetailPage = ({
   currentUser,
@@ -35,6 +46,10 @@ const CourseDetailPage = ({
       loadLessons(course.id);
     }
   }, [course, loadLessons]);
+
+  if (!userOwnsCourse(currentUser, courseId)) {
+    return <Redirect to={`/courses/${courseId}/buy`} noThrow />;
+  }
 
   if (loading) {
     return <Loading />;
