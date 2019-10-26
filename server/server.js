@@ -5,7 +5,7 @@ const middlewares = jsonServer.defaults();
 const jwt = require("jsonwebtoken");
 
 const SECRET_KEY = "12345_not_very_secret";
-const EXPIRES_IN = "20s";
+const EXPIRES_IN = "24h";
 
 function createToken(payload) {
   return jwt.sign(payload, SECRET_KEY, {
@@ -18,6 +18,19 @@ function findUser(username) {
     .get("users")
     .find({ username })
     .value();
+}
+
+function addCourseToUser(courseId, username) {
+  return router.db
+    .get("users")
+    .find({ username })
+    .update("courses", courses => {
+      if (courses && courses.indexOf(courseId) === -1) {
+        return [...courses, courseId];
+      }
+      return courses;
+    })
+    .write();
 }
 
 function isAuthenticated(username, password) {
@@ -117,6 +130,9 @@ server.use((req, res, next) => {
     return;
   }
 
+  // Save the currentUser to the request
+  req.currentUser = decodedPayload;
+
   const deny = () => res.status(403).json({ message: "Access denied" });
 
   switch (decodedPayload.role) {
@@ -153,11 +169,27 @@ server.use((req, res, next) => {
         return next();
       }
 
+      // allow POST /buy if they don't already own the course
+      if (
+        req.method === "POST" &&
+        req.path.endsWith("/buy") &&
+        !user.courses.includes(parseInt(req.body.courseId))
+      ) {
+        return next();
+      }
+
       return deny();
     // unknown role
     default:
       return deny();
   }
+});
+
+server.post("/api/buy", (req, res) => {
+  // Authenticated users can buy courses for themselves
+  addCourseToUser(parseInt(req.body.courseId), req.currentUser.username);
+
+  res.status(200).json(createAuthorizedUser(req.currentUser.username));
 });
 
 server.use(
