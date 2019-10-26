@@ -73,18 +73,20 @@ const CourseDetailPage = ({
                               <Link to={`lessons/${lesson.id}`}>
                                 {lesson.name}
                               </Link>
-                              <button
-                                onClick={() => edit(lesson.name)}
-                                className="edit-lesson-btn"
-                              >
-                                Edit
-                              </button>
-                              <button
-                                onClick={remove}
-                                className="delete-lesson-btn"
-                              >
-                                Delete
-                              </button>
+                              <RoleRequired role="admin">
+                                <button
+                                  onClick={() => edit(lesson.name)}
+                                  className="edit-lesson-btn"
+                                >
+                                  Edit
+                                </button>
+                                <button
+                                  onClick={remove}
+                                  className="delete-lesson-btn"
+                                >
+                                  Delete
+                                </button>
+                              </RoleRequired>
                             </div>
                           )}
                         </Lesson>

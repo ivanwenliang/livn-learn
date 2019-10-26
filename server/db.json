@@ -28,12 +28,6 @@
       "courseId": 1,
       "id": 7,
       "markdown": ""
-    },
-    {
-      "name": "asdf",
-      "courseId": 1,
-      "id": 8,
-      "markdown": "**asdf**\nasdf\n\n\n## Woah this is cool"
     }
   ],
   "users": [
@@ -48,7 +42,9 @@
       "username": "asdf",
       "password": "asdf",
       "role": "user",
-      "courses": [],
+      "courses": [
+        1
+      ],
       "id": 2
     },
     {
