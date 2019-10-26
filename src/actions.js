@@ -221,3 +221,7 @@ export const loadLastUser = () => {
     }
   };
 };
+
+export const logout = () => ({
+  type: LOGOUT_SUCCESS
+});

@@ -1,13 +1,31 @@
 import React from "react";
 import { connect } from "react-redux";
+import { navigate } from "@reach/router";
+import { logout } from "../actions";
 
-const LoginLogout = ({ currentUser }) => {
+const LoginLogout = ({ currentUser, logout }) => {
+  const performAction = () => {
+    if (currentUser) {
+      logout();
+    } else {
+      navigate("/login");
+    }
+  };
+
   return (
-    <button className="LoginLogout">{currentUser ? "Logout" : "Login"}</button>
+    <button className="LoginLogout" onClick={performAction}>
+      {currentUser ? "Logout" : "Login"}
+    </button>
   );
 };
 
 const mapState = state => ({
   currentUser: state.user.user
 });
-export default connect(mapState)(LoginLogout);
+const mapDispatch = {
+  logout
+};
+export default connect(
+  mapState,
+  mapDispatch
+)(LoginLogout);
