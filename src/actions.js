@@ -43,6 +43,10 @@ export const SIGNUP_ERROR = "SIGNUP_ERROR";
 
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 
+export const BUY_COURSE_BEGIN = "BUY_COURSE_BEGIN";
+export const BUY_COURSE_SUCCESS = "BUY_COURSE_SUCCESS";
+export const BUY_COURSE_ERROR = "BUY_COURSE_ERROR";
+
 export const addCourse = (name, price) => {
   return dispatch => {
     dispatch({ type: ADD_COURSE_BEGIN });
@@ -53,6 +57,21 @@ export const addCourse = (name, price) => {
       })
       .catch(error => {
         dispatch({ type: ADD_COURSE_ERROR, error });
+      });
+  };
+};
+
+export const buyCourse = courseId => {
+  return dispatch => {
+    dispatch({ type: BUY_COURSE_BEGIN });
+    api
+      .buyCourse(courseId) // buyCourse will return updated user with owned courses array updated
+      .then(user => {
+        dispatch({ type: BUY_COURSE_SUCCESS, payload: user });
+        dispatch({ type: LOGIN_SUCCESS, payload: user }); // LOGIN_SUCCESS reducer will update user for us (reusing code)
+      })
+      .catch(error => {
+        dispatch({ type: BUY_COURSE_ERROR, error });
       });
   };
 };

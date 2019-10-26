@@ -9,6 +9,10 @@ export const addCourse = (name, price) => {
   return postData(PREFIX + "/courses", { name, price: parseFloat(price) });
 };
 
+export const buyCourse = courseId => {
+  return postData(PREFIX + "/buy", { courseId });
+};
+
 export const loadCourses = () => {
   return fetch(PREFIX + "/courses")
     .then(handleErrors)

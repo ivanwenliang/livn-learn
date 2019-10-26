@@ -1,11 +1,23 @@
 import React from "react";
 import { connect } from "react-redux";
-import { navigate } from "@reach/router";
-import { getCourseById } from "../selectors";
+import { Redirect } from "@reach/router";
+import { getCourseById, userOwnsCourse } from "../selectors";
+import { buyCourse } from "../actions";
 import "./SalesPage.css";
 
 // Use navigate instead of redirect, because SalesPage is a top-level route
-const SalesPage = ({ course, currentUser, courseId, navigate }) => {
+const SalesPage = ({
+  course,
+  currentUser,
+  courseId,
+  navigate,
+  buyCourse,
+  userOwnsCourse
+}) => {
+  if (userOwnsCourse) {
+    return <Redirect to={`/courses/${courseId}`} noThrow />;
+  }
+
   const buyOrLogin = () => {
     if (currentUser) {
       buyCourse(courseId);
@@ -24,6 +36,13 @@ const SalesPage = ({ course, currentUser, courseId, navigate }) => {
 
 const mapState = (state, ownProps) => ({
   currentUser: state.user.user,
-  course: getCourseById(state, ownProps)
+  course: getCourseById(state, ownProps),
+  userOwnsCourse: userOwnsCourse(state, ownProps)
 });
-export default connect(mapState)(SalesPage);
+const mapDispatch = {
+  buyCourse
+};
+export default connect(
+  mapState,
+  mapDispatch
+)(SalesPage);
