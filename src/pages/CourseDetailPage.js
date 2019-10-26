@@ -41,7 +41,7 @@ const CourseDetailPage = ({
     }
   }, [course, loadLessons]);
 
-  if (!userOwnsCourse(currentUser, courseId)) {
+  if (!userOwnsCourse) {
     return <Redirect to={`/courses/${courseId}/buy`} noThrow />;
   }
 
