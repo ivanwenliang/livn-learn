@@ -5,6 +5,7 @@ import CourseDetailPage from "./pages/CourseDetailPage";
 import LessonPage from "./pages/LessonPage";
 import LoginPage from "./pages/LoginPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import SalesPage from "./pages/SalesPage";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <LoginPage path="/login" />
       <Redirect noThrow from="/" to="/courses" />
       <CourseListPage path="/courses" />
+      <SalesPage path="/courses/:courseId/buy" />
       <CourseDetailPage path="/courses/:courseId">
         <LessonPage path="lessons/:lessonId" />
       </CourseDetailPage>

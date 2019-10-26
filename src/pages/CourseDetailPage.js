@@ -16,6 +16,8 @@ import {
 import "./CourseDetailPage.css";
 
 const CourseDetailPage = ({
+  currentUser,
+  courseId,
   course,
   loading,
   lessons,
@@ -125,7 +127,8 @@ const mapState = (state, ownProps) => {
     loading: state.courses.coursesLoading,
     lessons: getLessonsByCourse(state, ownProps),
     course: getCourseById(state, ownProps),
-    previewMode: state.app.previewMode
+    previewMode: state.app.previewMode,
+    currentUser: state.user.user
   };
 };
 const mapDispatch = {
