@@ -61,7 +61,11 @@ const deleteData = (url = ``, data = {}) => {
   return fetchWithData(url, data, "DELETE");
 };
 
-const fetchWithData = (url = ``, data = {}, method = "POST") => {
+const fetchWithData = (
+  url = `https://mighty-wildwood-30537.herokuapp.com`,
+  data = {},
+  method = "POST"
+) => {
   // Default options are marked with *
   return fetch(url, {
     method,
